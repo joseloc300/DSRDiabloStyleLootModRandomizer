@@ -1,5 +1,6 @@
 import csv
 import random
+import os
 
 npcParamHeader = []
 npcParamRows = []
@@ -92,7 +93,10 @@ def randomize_item_sp_effects():
     return
 
 def write_output():
-    with open('./randomizedCSVs/NpcParam.csv', 'w', newline='') as csvfile:
+    outputPath = "./randomizedCSVs/"
+    if not os.path.exists(outputPath):
+        os.makedirs(outputPath)
+    with open(outputPath + '/NpcParam.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, delimiter=',',
                                 quotechar='|', quoting=csv.QUOTE_MINIMAL)
         writer.writerow(npcParamHeader)
